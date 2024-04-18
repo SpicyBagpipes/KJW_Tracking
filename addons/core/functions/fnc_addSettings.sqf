@@ -17,11 +17,11 @@
  */
 
 [
-	QGVAR(frequency),
+	QGVAR(chance),
 	"SLIDER",
-	["PPE Threshold", "Threshold for PPE blocking all damage"],
-	["KJW's Medical Expansion", "Diseases"],
-	[0, 15, 2.2, 1], // Default value
+	["Chance", "Chance for a unit to drop a "],
+	"KJW's Tracking",
+	[0, 0.2, 0.001, 3], // Default value
 	1, // 1: all clients share the same setting, 2: setting can’t be overwritten (optional, default: 0)
 	{}, // Setting changed code
 	false // Requires restart

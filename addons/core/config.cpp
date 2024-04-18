@@ -8,8 +8,7 @@ class CfgPatches {
             "A3_Data_F",
             "A3_Weapons_F",
             "A3_Characters_F",
-            "A3_Data_F_AoW_Loadorder",
-            "KJW_MedicalExpansion_Core"
+            "A3_Data_F_AoW_Loadorder"
         };
         requiredVersion=1;
 		units[] = {""};
@@ -29,3 +28,5 @@ class Extended_PreInit_EventHandlers {
         init = QUOTE(call compileScript [QQPATHTOF(XEH_PreInit.sqf)]);
 	};
 };
+
+#include "CfgVehicles.hpp"
