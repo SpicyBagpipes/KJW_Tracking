@@ -70,29 +70,28 @@ GVAR(maxSteps) = 500;
 			if (ace_player getVariable [QGVAR(TrackingUnit),objNull] isNotEqualTo _x) then {
 				hideObject _obj;
 			};
-			private _steps = _x getVariable [QGVAR(steps),""];
 
-			private _nextStep = _x getVariable QGVAR(nextStep);
-			if (_steps isEqualTo "") then {
+			private _steps = _x getVariable [QGVAR(steps), false];
+			if (_steps isEqualType false) then {
 				_steps = [];
-				_steps resize 500;
+				_steps resize GVAR(maxSteps);
 				_steps resize 0;
 				_x setVariable [QGVAR(steps), _steps];
-				_x setVariable [QGVAR(nextStep), 500-1];
+				_x setVariable [QGVAR(nextStep), GVAR(maxSteps) - 1];
 			};
 
-			private _nextStep = _x getVariable QGVAR(nextStep);
 			if (count _steps >= GVAR(maxSteps)) then {
+				private _nextStep = _x getVariable QGVAR(nextStep);
 				_nextStep = (_nextStep + 1) % GVAR(maxSteps);
 				deleteVehicle (_steps#_nextStep);
 				_steps set [_nextStep, _obj];
 				_x setVariable [QGVAR(nextStep), _nextStep];
-			} else {
-				_nextStep = _steps pushBack _obj;
+			} else	{
+				_steps pushBack _obj;
 			};
 		};
 		private _roll = random 1;
-		if ((_roll < GVAR(chance)/0.6)) then {
+		if (isServer && (_roll < GVAR(chance)/0.6)) then {
 			private _classname = selectRandom GVAR(possibleItems);
 			private _pos = getPosATL _x;
 			private _dir = getDir _x;
