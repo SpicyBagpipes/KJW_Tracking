@@ -39,9 +39,10 @@ GVAR(footprintPaths) = [
 ];
 
 GVAR(totalSteps) = [];
+GVAR(maxSteps) = 500;
 
 [{
-	if (isGamePaused) exitWith {};
+	if (isGamePaused || GVAR(chance) == 0) exitWith {};
 	{
         if (GVAR(doPlayers) && _x in allPlayers) then {continue};
 		if (_x getVariable [QGVAR(Exception),false]) then {continue};
@@ -69,19 +70,29 @@ GVAR(totalSteps) = [];
 			if (ace_player getVariable [QGVAR(TrackingUnit),objNull] isNotEqualTo _x) then {
 				hideObject _obj;
 			};
-			private _steps = _x getVariable [QGVAR(Steps),[]];
-            _steps pushBack _obj;
-			private _totalSteps = GVAR(TotalSteps);
-			_totalSteps pushBack _obj;
-			if (count _totalSteps > 50000) then {
-                private _firstStep = _totalSteps#0;
-                GVAR(TotalSteps) deleteAt 0;
-				deleteVehicle (_firstSTep);
+			private _steps = _x getVariable [QGVAR(steps),""];
+
+			private _nextStep = _x getVariable QGVAR(nextStep);
+			if (_steps isEqualTo "") then {
+				_steps = [];
+				_steps resize 500;
+				_steps resize 0;
+				_x setVariable [QGVAR(steps), _steps];
+				_x setVariable [QGVAR(nextStep), 500-1];
 			};
-			_x setVariable [QGVAR(Steps),_steps];
+
+			private _nextStep = _x getVariable QGVAR(nextStep);
+			if (count _steps >= GVAR(maxSteps)) then {
+				_nextStep = (_nextStep + 1) % GVAR(maxSteps);
+				deleteVehicle (_steps#_nextStep);
+				_steps set [_nextStep, _obj];
+				_x setVariable [QGVAR(nextStep), _nextStep];
+			} else {
+				_nextStep = _steps pushBack _obj;
+			};
 		};
 		private _roll = random 1;
-		if (isServer && (_roll < GVAR(chance)/0.6)) then {
+		if ((_roll < GVAR(chance)/0.6)) then {
 			private _classname = selectRandom GVAR(possibleItems);
 			private _pos = getPosATL _x;
 			private _dir = getDir _x;
