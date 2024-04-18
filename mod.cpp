@@ -1,5 +1,5 @@
 dir = "@KJW_Tracking";
-name = "KJW's Diseases";
+name = "KJW's Tracking";
 
 author = "KJW";
 
@@ -10,9 +10,9 @@ hidePicture     = "false";                  // Hide the extension menu
 logoSmall       = "icon.paa";         // Display next to the item added by the mod 64x64
 logo            = "icon.paa";        // Logo displayed in the main menu 128x128
 logoOver        = "icon.paa"; // When the mouse is over, in the main menu 128x128
-tooltip         = "KJW's Diseases";
+tooltip         = "KJW's Tracking";
 tooltipOwned    = "Who sold this to you?";  // Tool tip displayed when the mouse is left over, in the main menu
-overview        = "KJW's Diseases";         // Overview text, displayed from the extension menu
+overview        = "KJW's Tracking";         // Overview text, displayed from the extension menu
 description     = "It's unclear where this will show"; // Probably in context with action
 action          = "";    // Website URL, that can accessed from the expansions menu 
 actionName      = "GitHub";                 // label of button/tooltip in extension menu

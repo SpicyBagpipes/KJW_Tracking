@@ -17,4 +17,3 @@
  */
 
 call FUNC(addSettings);
-call FUNC(addKeybinds);

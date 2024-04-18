@@ -16,6 +16,4 @@
  *  Public: No
  */
 
-PREP(addEventHandlers)
 PREP(addSettings)
-PREP(addKeybinds)
