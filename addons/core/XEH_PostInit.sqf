@@ -130,9 +130,9 @@ GVAR(maxSteps) = 500;
     params ["_unit"];
 
     {_x hideObject true} forEach ((ace_player getVariable [QGVAR(TrackingUnit),objNull]) getVariable [QGVAR(Steps),[]]);
+	ace_player setVariable [QGVAR(TrackingUnit),_unit];
 
     if (isNull _unit) exitWith {};
-
-    ace_player setVariable [QGVAR(TrackingUnit),_unit];
+	
 	{_x hideObject false} forEach (_unit getVariable [QGVAR(steps),[]]);
 }] call CBA_fnc_addEventHandler;
