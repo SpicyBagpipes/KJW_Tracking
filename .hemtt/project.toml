@@ -1,0 +1,15 @@
+name = "KJW's Diseases"
+prefix = "KJW_Tracking"
+author = "KJW"
+mainprefix = "y"
+
+[files]
+include = [
+    "mod.cpp",
+    "*.paa"
+]
+
+[version]
+git_hash = 0 # Disabled
+
+path = "addons/core/script_version.hpp" # Default
