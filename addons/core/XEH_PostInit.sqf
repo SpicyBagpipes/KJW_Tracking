@@ -117,7 +117,7 @@ GVAR(maxSteps) = 500;
 	if isNull _item exitWith {};
 	private _obj = createSimpleObject ["Sign_Sphere10cm_F", [0,0,0], true];
 	_obj setPosASL getPosASL _item;
-	_obj setObjectScale 0.5;
+	_obj setObjectScale 0.75;
 	private _action = [
 		QGVAR(TrackTarget),
 		"Track",
