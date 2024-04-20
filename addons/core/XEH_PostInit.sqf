@@ -46,7 +46,8 @@ GVAR(maxSteps) = 500;
 	{
         if (GVAR(doPlayers) && _x in allPlayers) then {continue};
 		if (_x getVariable [QGVAR(exception),false]) then {continue};
-		if (hasInterface && (vectorMagnitude velocity _x > 1)) then {
+		if (vectorMagnitude velocity _x < 1) then {continue};
+		if (hasInterface) then {
 			private _obj = "";
 			private _footTracker = _x getVariable [QGVAR(footTracker),1];
 			private _pos = getPosASL _x;
