@@ -107,7 +107,7 @@ GVAR(maxSteps) = 500;
 			_obj setVectorUp surfaceNormal _pos;
 			_obj enableSimulationGlobal false;
 			_obj setVariable [QGVAR(owner), _x, true];
-			[QGVAR(addInteraction),[_obj]] call CBA_fnc_globalEvent;
+			[QGVAR(addInteraction),[_obj]] call CBA_fnc_globalEventJIP;
 			// Fire global event for the ace interaction adding
 		};	  
 	} forEach allUnits;
