@@ -97,18 +97,11 @@ GVAR(maxSteps) = 500;
 				_steps pushBack _objInfo;
 			};
 		};
+
+		
 		private _roll = random 1;
 		if (isServer && (_roll < GVAR(chance)/0.6)) then {
-			private _classname = selectRandom GVAR(possibleItems);
-			private _pos = getPosATL _x;
-			private _dir = getDir _x;
-			private _obj = _classname createVehicle _pos;
-			_obj setDir _dir;
-			_obj setVectorUp surfaceNormal _pos;
-			_obj enableSimulationGlobal false;
-			_obj setVariable [QGVAR(owner), _x, true];
-			[QGVAR(addInteraction),[_obj]] call CBA_fnc_globalEventJIP;
-			// Fire global event for the ace interaction adding
+			[QGVAR(dropLitter),[_x]] call CBA_fnc_globalEventJIP;
 		};	  
 	} forEach allUnits;
 }, 0.6, []] call CBA_fnc_addPerFrameHandler;
@@ -116,9 +109,12 @@ GVAR(maxSteps) = 500;
 [QGVAR(addInteraction), {
 	params ["_item"];
 	if isNull _item exitWith {};
-	private _obj = createSimpleObject ["Sign_Sphere10cm_F", [0,0,0], true];
-	_obj setPosASL getPosASL _item;
-	_obj setObjectScale 0.75;
+	if GVAR(addHelper) then {
+		private _obj = createSimpleObject ["Sign_Sphere10cm_F", [0,0,0], true];
+		_obj setPosASL getPosASL _item;
+		_obj setObjectScale 0.75;
+		_item setVariable [QGVAR(helper),_obj];
+	};
 	private _action = [
 		QGVAR(TrackTarget),
 		"Track",
@@ -135,6 +131,19 @@ GVAR(maxSteps) = 500;
 		[0,0,0],
 		50] call ace_interact_menu_fnc_createAction;
 	[_item, 0, [], _action] call ace_interact_menu_fnc_addActionToObject;
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(dropLitter), {
+	params ["_unit"];
+	private _classname = selectRandom GVAR(possibleItems);
+	private _pos = getPosATL _unit;
+	private _dir = getDir _unit;
+	private _obj = _classname createVehicleLocal _pos;
+	_obj setDir _dir;
+	_obj setVectorUp surfaceNormal _pos;
+	_obj enableSimulationGlobal false;
+	_obj setVariable [QGVAR(owner), _unit, true];
+	[QGVAR(addInteraction),[_obj]] call CBA_fnc_localEvent;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(trackTarget), {
