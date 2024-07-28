@@ -11,7 +11,7 @@
  *  None
  * 
  *  Example:
- *  call KJW_Diseases_Core_fnc_addSettings
+ *  call KJW_Tracking_Core_fnc_addSettings
  * 
  *  Public: No
  */
