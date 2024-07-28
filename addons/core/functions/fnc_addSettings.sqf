@@ -21,7 +21,7 @@
 	"SLIDER",
 	["Chance", "Chance for a unit to drop a piece of litter"],
 	"KJW's Tracking",
-	[0, 0.1, 0.0001, 4], // Default value
+	[0, 0.1, 0.0001, 5], // Default value
 	1, // 1: all clients share the same setting, 2: setting can’t be overwritten (optional, default: 0)
 	{}, // Setting changed code
 	false // Requires restart
@@ -33,6 +33,17 @@
 	["Players", "Include players in litter dropping and step tracking"],
 	"KJW's Tracking",
 	false, // Default value
+	1, // 1: all clients share the same setting, 2: setting can’t be overwritten (optional, default: 0)
+	{}, // Setting changed code
+	false // Requires restart
+] call CBA_fnc_addSetting;
+
+[
+	QGVAR(addHelper),
+	"CHECKBOX",
+	["Add Helper", "Include a helper sphere on the litter in order to aid in visibility"],
+	"KJW's Tracking",
+	true, // Default value
 	1, // 1: all clients share the same setting, 2: setting can’t be overwritten (optional, default: 0)
 	{}, // Setting changed code
 	false // Requires restart
