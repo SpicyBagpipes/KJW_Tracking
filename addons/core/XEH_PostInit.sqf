@@ -135,6 +135,7 @@ GVAR(maxSteps) = 500;
 
 [QGVAR(dropLitter), {
 	params ["_unit"];
+	if (speed _unit < 10) exitWith {};
 	private _classname = selectRandom GVAR(possibleItems);
 	private _pos = getPosATL _unit;
 	private _dir = getDir _unit;

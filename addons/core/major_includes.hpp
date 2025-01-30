@@ -33,12 +33,10 @@
 #define PATHTOEF(P1,P2) \y\##MOD_NAME##\addons\##P1##\##P2
 #define QPATHTOEF(P1,P2) QUOTE(EPATHTOF(P1,P2))
 
-//#define MACRO_FUNCPATH(FUNCNAME) COMPONENT##\functions\fnc_##FUNCNAME
 
 #define FUNCTION_DECLARE(FUNCTIONNAME) class FUNCTIONNAME {\
 				file = QPATHTOF(functions\fnc_##FUNCTIONNAME##.sqf);\
 				recompile = 1;\
             };
-//file = QUOTE(MACRO_FUNCPATH(FUNCTIONNAME).sqf);
 
 #define PREP(FUNCTIONNAME) COMPONENT_GENERAL##_fnc_##FUNCTIONNAME = compile preProcessFileLineNumbers '\y\##MOD_NAME##\addons\##COMPONENT##\functions\fnc_##FUNCTIONNAME##.sqf';
